@@ -8,12 +8,12 @@ import datetime
 class Rossmann( object ):
     
     def __init__( self ):
-        self.home_path                      = ' " 
+        self.home_path=''
         self.competition_distance_scaler    = pickle.load(  open( self.home_path +'parameter/competition_distance_scaler.pkl', 'rb') )
         self.promo_time_week_scaler         = pickle.load(  open( self.home_path +'parameter/promo_time_week_scaler.pkl', 'rb') )
         self.competition_time_month_scaler  = pickle.load(  open( self.home_path +'parameter/competition_time_month_scaler.pkl', 'rb') )
         self.year_scaler                    = pickle.load(  open( self.home_path +'parameter/year_scaler.pkl', 'rb') )
-        self.store_type_scaler              = pickle.load(  open( self.home_path +'/parameter/store_type_scaler.pkl', 'rb') )
+        self.store_type_scaler              = pickle.load(  open( self.home_path +'parameter/store_type_scaler.pkl', 'rb') )
 
 
 
@@ -106,7 +106,7 @@ class Rossmann( object ):
 
         # week of year
         
-        df2['week_of_year'] = df2['date'].dt.weekofyear
+        df2['week_of_year'] = df2['date'].dt.isocalendar().week
 
         # year week
         
@@ -159,7 +159,7 @@ class Rossmann( object ):
 
         # promo time week
         
-        df5['promo_time_week'] = self_promo_time_week_scaler.fit_transform( df5[['promo_time_week']].values )
+        df5['promo_time_week'] = self.promo_time_week_scaler.fit_transform( df5[['promo_time_week']].values )
         
         # year
         
