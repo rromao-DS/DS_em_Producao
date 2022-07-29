@@ -6,7 +6,7 @@ import math
 import datetime
 
 class Rossmann( object ):
-    
+        
     def __init__( self ):
         self.home_path=''
         self.competition_distance_scaler    = pickle.load(  open( self.home_path +'parameter/competition_distance_scaler.pkl', 'rb') )
@@ -18,7 +18,7 @@ class Rossmann( object ):
 
 
     def data_cleaning (self, df1 ):
-        
+                
         ## 1.1. Rename Columns
             
         cols_old = ['Store', 'DayOfWeek', 'Date', 'Open', 'Promo', 'StateHoliday', 'SchoolHoliday', 
@@ -146,7 +146,7 @@ class Rossmann( object ):
         return df2
     
     def data_preparation ( self, df5 ):
-        
+                
         ## 5.2. Rescaling
 
         # competition distance
@@ -203,7 +203,8 @@ class Rossmann( object ):
         cols_selected = ['store','promo','store_type','assortment','competition_distance','competition_open_since_month','competition_open_since_year',
                      'promo2','promo2_since_week','promo2_since_year','competition_time_month','promo_time_week','day_of_week_sin',
                     'day_of_week_cos','month_sin','month_cos','day_sin','day_cos','week_of_year_sin', 'week_of_year_cos']
-        return df5
+        
+        return df5[ cols_selected]
     
     def get_prediction( self, model, original_data, test_data ):
         # prediction
